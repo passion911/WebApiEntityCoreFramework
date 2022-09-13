@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using StringLibrary;
 using Swashbuckle.AspNetCore.Annotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,6 +20,7 @@ namespace API_EndPoints.Controllers
         [SwaggerOperation(OperationId = "Get All Employees")]
         public ActionResult<IEnumerable<string>> GetEmployees()
         {
+            var verify = StringUtilities.StartsWithUpper("Hello");
             var size = HttpContext.Features.Get<IHttpMaxRequestBodySizeFeature>()?.MaxRequestBodySize;
             if ((new Random()).Next() % 2 == 0)
             {

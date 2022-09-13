@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.0.0</Version>
+    <Company>BaoAnhCompany</Company>
+    <Description>A small handy and nice feature for string in C#</Description>
+    <Copyright>No Coppyright</Copyright>
+    <PackageProjectUrl>Google.com</PackageProjectUrl>
+    <Product>StringManupulation</Product>
+    <Authors>HiddenOrganization</Authors>
+    <PackageId>BaoAnh-StringManupulation</PackageId>
+    <PackageTags>stringc#</PackageTags>
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+
+</Project>

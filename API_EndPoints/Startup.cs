@@ -18,10 +18,11 @@ namespace API_EndPoints
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Environment { get; }
 
-        public void ConfigureServices(IServiceCollection servies)
+        public void ConfigureServices(IServiceCollection services)
         {
             //TODO
-            servies.AddSwaggerGen(c =>
+            services.AddApplicationInsightsTelemetry();
+            services.AddSwaggerGen(c =>
             {
                 c.DescribeAllParametersInCamelCase();
                 c.DocumentFilter<TagDescriptionsDocumentFilter>();
@@ -34,7 +35,7 @@ namespace API_EndPoints
                 });
                 c.EnableAnnotations();
             });
-            servies.AddMvc(c =>
+            services.AddMvc(c =>
             {
                 c.Filters.Add<TranslateBodyResultServiceFilter>();
                 c.EnableEndpointRouting = false;
@@ -50,7 +51,7 @@ namespace API_EndPoints
                 options.JsonSerializerOptions.Converters.Add(new LongToStringConverter());
             });
 
-            servies.ConfigureServices(this.Configuration.Bind)
+            services.ConfigureServices(this.Configuration.Bind)
                 .AddMemoryCache(options =>
                 {
                     options.ExpirationScanFrequency = TimeSpan.Parse(Configuration.GetValue<string>("AbsoluteExpirationRelativeToNow"));
@@ -59,10 +60,10 @@ namespace API_EndPoints
                 .AddNotificationService(this.Configuration.GetSection("ConnectionStrings").Bind)
                 .AddBlobRepository();
 
-            servies.AddControllers();
-            servies.AddAuthorization();
-            servies.AddAuthentication();
-            servies.AddResponseCompression();
+            services.AddControllers();
+            services.AddAuthorization();
+            services.AddAuthentication();
+            services.AddResponseCompression();
         }
 
         public void Configure(WebApplication app)

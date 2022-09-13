@@ -21,6 +21,12 @@ namespace API_EndPoints.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            var iteration = 1;
+            _logger.LogDebug($"Debug {iteration}");
+            _logger.LogInformation($"Information {iteration}");
+            _logger.LogWarning($"Warning {iteration}");
+            _logger.LogError($"Error {iteration}");
+            _logger.LogCritical($"Critical {iteration}");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
